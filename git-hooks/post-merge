@@ -1,0 +1,8 @@
+#!/bin/bash
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$branch" = "main" ]; then
+    echo "Merge into main completed on $(date)" >> merge_log.txt
+    echo "Merge logged in merge_log.txt"
+fi
