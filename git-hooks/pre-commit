@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "Checking for README.md files in all directories..."
+
+missing_readme=false
+
+# Loop through all directories except .git
+for dir in $(find . -type d -not -path "./.git*" -not -path "." ); do
+    if [ ! -f "$dir/README.md" ]; then
+        echo "Missing README.md in directory: $dir"
+        missing_readme=true
+    fi
+done
+
+if [ "$missing_readme" = true ]; then
+    echo "Commit aborted: Please add README.md files to all directories."
+    exit 1
+fi
+
+echo "All directories contain README.md files."
+exit 0
